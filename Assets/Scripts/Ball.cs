@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,17 +13,29 @@ public class Ball : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        ResetPosition();
         AddStartingForce();
     }
-
-    void AddStartingForce()
+    
+    public void AddStartingForce()
     {
         float x = Random.value > 0.5f ? 1.0f : -1.0f;
         float y = Random.value > 0.5f ? Random.Range(-1.0f, -0.5f) : Random.Range(0.5f, 1.0f);
 
         Vector2 direction = new Vector2(x, y);
         _rigidbody.AddForce(direction * speed);
+    }
+    
+    public void ResetPosition()
+    {
+        this._rigidbody.position = Vector3.zero;
+        this._rigidbody.velocity = Vector3.zero;
+    }
+
+    public void AddForce(Vector2 force)
+    {
+        this._rigidbody.AddForce(force);
     }
 }

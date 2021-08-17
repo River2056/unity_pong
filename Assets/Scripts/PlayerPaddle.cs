@@ -11,7 +11,7 @@ public class PlayerPaddle : Paddle
     private float upperWallY;
     private float lowerWallY;
 
-    void Awake()
+    private void Start()
     {
         upperWall = GameObject.FindGameObjectWithTag("Upper Wall");
         lowerWall = GameObject.FindGameObjectWithTag("Lower Wall");
@@ -20,7 +20,7 @@ public class PlayerPaddle : Paddle
     }
     
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Vector3 currentPos = transform.position;
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

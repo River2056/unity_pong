@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ComputerPaddle : Paddle
 {
-    // Start is called before the first frame update
-    void Start()
+    public Rigidbody2D ball;
+    private void FixedUpdate()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Vector2 direction = new Vector2(0, 0);
+        if (this.ball.velocity.x > 0.0f)
+        {
+            if (this.transform.position.y < this.ball.transform.position.y)
+                direction = Vector2.up;
+            else if (this.transform.position.y > this.ball.transform.position.y)
+                direction = Vector2.down;
+        }
+        else
+        {
+            if (this.transform.position.y > 0.0f)
+                direction = Vector2.down;
+            else if (this.transform.position.y < 0.0f)
+                direction = Vector2.up;
+        }
+        this._rigidbody.AddForce(direction * this.speed);
     }
 }
